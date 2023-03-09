@@ -46,6 +46,13 @@ function login(event) {
         hasError = true;
     }
 
+    if (hasError) {
+      document.getElementById("login-email-error").classList.remove('d-none');
+    } else {
+      document.getElementById("login-email-error").classList.add('d-none');
+    }
+    hasError = false;
+
     var password = document.getElementById('login-password-control');
     if (password.value.trim().length == 0) {
         setInvalid(password);
@@ -55,9 +62,9 @@ function login(event) {
     }
 
     if (hasError) {
-        document.getElementById('login-error').classList.remove('d-none');
+        document.getElementById('login-password-error').classList.remove('d-none');
     } else {
-        document.getElementById('login-error').classList.add('d-none');
+        document.getElementById('login-password-error').classList.add('d-none');
     }
 }
 
@@ -109,6 +116,12 @@ function register(event) {
     } else if (firstName.validity.valid) {
         setValid(firstName);
     }
+    if (hasError) {
+      document.getElementById('register-first-name-error').classList.remove('d-none');
+    } else {
+      document.getElementById('register-first-name-error').classList.add('d-none');
+    }
+    hasError = false;
 
     var lastName = document.getElementById('register-last-name-control');
     if (lastName.value.trim().length == 0) {
@@ -117,6 +130,12 @@ function register(event) {
     } else if (lastName.validity.valid) {
         setValid(lastName);
     }
+    if (hasError) {
+      document.getElementById('register-last-name-error').classList.remove('d-none');
+    } else {
+      document.getElementById('register-last-name-error').classList.add('d-none');
+    }
+    hasError = false;
 
     var email = document.getElementById('register-email-control');
     if (email.validity.valid) {
@@ -128,6 +147,12 @@ function register(event) {
         setInvalid(email);
         hasError = true;
     }
+    if (hasError) {
+      document.getElementById('register-email-error').classList.remove('d-none');
+    } else {
+      document.getElementById('register-email-error').classList.add('d-none');
+    }
+    hasError = false;
 
     var password = document.getElementById('register-password-control');
     var passwordValue = password.value.trim();
@@ -146,6 +171,12 @@ function register(event) {
     } else {
         setValid(password);
     }
+    if (hasError) {
+      document.getElementById('register-password-error').classList.remove('d-none');
+    } else {
+      document.getElementById('register-password-error').classList.add('d-none');
+    }
+    hasError = false;
 
     var programme = document.getElementById('register-programme-control');
     if (programme.validity.valueMissing) {
@@ -157,12 +188,12 @@ function register(event) {
     } else {
         setValid(programme);
     }
-
     if (hasError) {
-        document.getElementById('register-error').classList.remove('d-none');
+      document.getElementById('register-programme-error').classList.remove('d-none');
     } else {
-        document.getElementById('register-error').classList.add('d-none');
+      document.getElementById('register-programme-error').classList.add('d-none');
     }
+    hasError = false;
 }
 
 document.addEventListener('DOMContentLoaded', function() {

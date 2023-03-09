@@ -153,4 +153,43 @@
 
 # Exercise 4
 
+## Form control labelling 
+
+### Do you think the form labels are implemented and associated with the corresponding input controls correctly?
+
+- No, the form labels are just implemented as paragraphs
+- The `label` tag should be used instead
+
+### Would a screen reader user experience any difficulty when interacting with these forms? Can you improve the situation?
+
+- Screen readers tell to enter an email. However, it is unclear from the spoken text alone why the email is needed
+- Could be improved with a fieldset and label
+
+## Related control grouping
+
+### Can you update the HTML source code so that the two groups are grouped using the proper element instead of the generic div elements
+
+- You can use the `fieldset` tag instead of a div
+- Use one `fieldset` for the basic information
+- Use the second `fieldset` for additional information
+
+## Form input validation
+
+### If you leave the login form empty and click the login button, do you see any indication of errors?
+
+- An error appears above all form elements
+- The incorrect field becomes bordered in red
+- The error does not state clearly what went wrong nor how to recover from the error
+- There is only visual feedback, no audio or haptic feedback
+
+### Based on your knowledge, are those features sufficient to notify the user about his/her mistake?
+
+- No, since screen readers won't catch up on the red border
+- There is no way of knowing whether the login process went through or whether there was an error
+
+### Can you introduce some improvement to the form input validation?
+
+- Display error messages below corresponding fields
+- Add `aria-live='assertive'` attributes to error messages
+
 
