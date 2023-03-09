@@ -214,4 +214,21 @@
 - You can wrap the image into a `figcaption` tag with a descriptive text
 - We could also use `aria-describedby` but screen readers won't reference the image in this case and the text might be confused with regular text content
 
+# Exercise 6 – Accessible tables
 
+## Header cells vs data cells
+
+### Can you identify which rows (columns) belong the table header while which rows (columns) belong to the table data?
+
+- The header cells are perceivable through the structure only
+
+### If you inspect the HTML code of article.html in your code editor, are the header cells and data cells marked up correctly? If not, how can you fix it?
+
+- The table does not use correct table header tags
+- You should add `th`-tags to the headers
+
+## Column and row groups 
+
+### Based on the slides containing column and row groups, can you change the HTML code?
+
+- The `scope` attribute can be used to span headers over multiple rows/columns
