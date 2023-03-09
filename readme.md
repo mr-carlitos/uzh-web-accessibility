@@ -1,5 +1,5 @@
 
-# Exercise 1
+# Exercise 1 – Explore the sample Website
 
 ### Try to find features that do not work as expected.
 
@@ -29,7 +29,7 @@
 - Some buttons, like the buttons to increase and decrease the font size, show up twice when CSS is disabled, which is confusing
 - The navigation hierarchy is flat and does not represent the website structure, which makes it hard to navigate visually
 
-# Exercise 2
+# Exercise 2 – Accessible design
 
 ## Contrast Ratio
 
@@ -74,7 +74,7 @@
 - Mark text as a label for the input field
 - Place label before input field to respect element ordering
 
-# Exercise 3
+# Exercise 3 – Accessible navigation
 
 ## Headings
 
@@ -151,7 +151,7 @@
 - Make links invisible using CSS
 - Make links visible when in focus
 
-# Exercise 4
+# Exercise 4 – Accessible forms
 
 ## Form control labelling 
 
@@ -191,5 +191,27 @@
 
 - Display error messages below corresponding fields
 - Add `aria-live='assertive'` attributes to error messages
+
+# Exercise 5 – Accessible images
+
+## Informative images
+
+### Please identify all the informative images in the sample Website.
+
+- Logo
+- Article Images (3 times)
+
+### Are these images accessible to people using screen readers?
+
+- Not accessible since no `alt` text is present
+- Add `alt` description if image displays something meaningful
+- Add empty `alt` tag for logo as its content is not relevant
+
+## Complex images 
+
+### Can you add accessibility features to make this part more accessible?
+
+- You can wrap the image into a `figcaption` tag with a descriptive text
+- We could also use `aria-describedby` but screen readers won't reference the image in this case and the text might be confused with regular text content
 
 
