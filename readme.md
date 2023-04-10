@@ -3,76 +3,90 @@
 
 ### Try to find features that do not work as expected.
 
-- Clicking on the website logo or the text next to it did not lead to the home page
-- The buttons on the top-right of the screen that look like they should change the font size don't do anything when clicked
-- A lot of links lead to pages that state "This page is currently under construction"
-- On the login page, neither the "login" nor the "Forgot password" button are implemented
-- On the login page, the "register" button does not work either
+- Clicking on the website logo or the text next to it did not lead to the home page.
+- The buttons on the top-right of the screen that look like they should change the font size don't do anything when clicked.
+- A lot of links lead to pages that state "This page is currently under construction".
+- On the login page, neither the "login" nor the "Forgot password" button are implemented.
+- On the login page, the "register" button does not work either.
 - Some link targets are wrong, clicking on "Studies > Master Programmes" on the home page leads to the bachelors programmes.
 - Some pages, like the "News & Events", are only linked on the homepage and neither in the main navigation nor the footer. 
 
 ### Try to find features that are implemented but not very accessible.
 
-- The website suffers from a lot of poor contrasts, text is generally written in grey instead of black
-- The hover indicators on all menu items is very subtle and therefore hard to perceive
-- On the login page, the login form does not state what was done wrong, it just states "Please correct the error(s)". Colorblind people will not perceive the color indication around the 
+- The website suffers from a lot of poor contrasts, text is generally written in grey instead of black.
+- The hover indicators on all menu items are very subtle and therefore hard to perceive.
+- On the login page, the login form does not state what was done wrong, it just states "Please correct the error(s)". Colorblind people will not perceive the color indication around the form boxes.
 
 ### Discuss with your colleagues about your findings and try to propose some solutions or improvements.
 
-- Increase contrast ratio by making the font color darker
-- Make hover indicator more dominant: Increase font size on hover or add a clear border as an indicator
+- Increase contrast ratio by making the font color darker.
+- Check if the links are semantically correct (if a link says that you will be redirected to information about the Master Programmes, then this should happen).
+- Don't publish/deploy software features (like login or registration functionality), if they are not yet fully implemented.
+- Make hover indicator more dominant: Increase font size on hover or add a clear border as an indicator.
 - Add an error symbol and an error text right under the form element that is not correct. State how to recover from this error.
 
 ### Now turn of the CSS feature from the browser. Navigate to different pages and try to find structures that have changed compared to when CSS is enabled. Do you think those changes are good or bad? Why?
 
-- The navigation elements look like links but nothing happens when you click them, which is bad since it triggers wrong expectations
-- Some buttons, like the buttons to increase and decrease the font size, show up twice when CSS is disabled, which is confusing
-- The navigation hierarchy is flat and does not represent the website structure, which makes it hard to navigate visually
+- The main navigation elements ("Faculties", "Education & research" and "Industry & partners") look like links but nothing happens when you click them, which is bad since it triggers wrong expectations.
+- Some buttons, like the buttons to increase and decrease the font size, show up twice when CSS is disabled, which is confusing.
+- The "LOREM IPSUM" picture appears twice: Once in huge size and once in small size.
+- The navigation hierarchy in the navbar and in the sections of the homepage ("News & events", "Studies", and "Researches") is flat and does not represent the website structure, which makes it hard to navigate through the website.
+- Within the Login or the Register form, the structure does not indicate that the respective form elements belong to a certain form (Login form or Register form).
 
 # Exercise 2 – Accessible design
 
 ## Contrast Ratio
 
 ### Can you change the contrast ratio of the content so that they become more legible?
+Yes, we can change the contrast ration. We performed the following steps:
+- Changing the overall text color to solid black
+- Changing navigation color to solid white
+- Changing `a`-tag color to dark green for people with color blindness
+- Analyzing contrast ratio using [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/#devtools) and some sample examination with [WebAIM](https://webaim.org/resources/contrastchecker/): The website now fulfills WCAG AA and AAA contrast guidelines. This means that color contrast now can be applied to small and large fonts.
 
-- Change the overall text color to solid black
-- Change navigation color to solid white
-- Change a-tag color to dark green for people with color blindness
-- Analyzed contrast ratio using Lighthouse, fulfills WCAG AA and AAA contrast guidelines
+The colors that we chose should provide enough contrast between them such that even people severe visual impairment should be able to perceive and distinguish them.
 
 ## Page regions
 
 ### How many regions, e.g. header, navigation, etc. are there in the Web page?
 
-- Header, Navigation, Main and Footer is present in all files
-- The home page contains 3 articles and 2 asides
-- The article page contains 1 article
+- A header, a navigation area, a main area and a footer are present on all pages.
+- The home page (index.html) also contains 3 articles and 2 asides.
+- The article page additionally has an article section.
 
+It needs to be stated that the pages originally provided the stated regions, but mostly didn't use appropriate tags (e.g., using the `nav` or `main` tags when displaying navigation or main content). Instead, the HTML code revealed that mostly `div` tags were being used. In our rework, we
+changed the files such that they now display the correct content with the correct tags.
 ## Accessible font size
 
 ### Can you implement the JavaScript that will dynamically scale all the font sizes?
-
+Yes, we were able to implement JavaScript code that dynamically scales all the font sizes. We performed the following steps:
 - Added event listeners to both buttons to increase / decrease the font size by 1 pixel on the root style
-- Add aria-described-by ID and tooltip div wit the same ID for screen reader support
-- Screen readers now read 'Increase font size'
+
+### What screen reader will announce for these two buttons? Is this good accessibility practice? If not, can you propose an improvement so that the purposes of these two buttons become clearer using ARIA support?
+Initially, the screen reader said that there were a "A plus Button" and a "A Button" inside the website content. When we clicked on one of the two buttons,
+there was no voice output. To fix this, we did the following:
+
+- We added the `aria-labelledby` attribute to the buttons and set their values to the respective IDs of the tooltip-divs which describe the buttons. This was done for increased screen reader support. 
+  - Screen readers now read 'Increase font size' when clicking on 'A+' and 'Decrease font size' when clicking on 'A-'.
 
 ## Reading order (screen reader)
 
 ### Compare the HTML code carefully against the actual layout, can you find something counter intuitive?
+Yes, we found the following things:
+- The input fields of the 'Login' and 'Create new account' sections are different:
+  - In the 'Login' section, the input elements are defined first, then the labels/paragraph elements, but the labels/paragraph are moved up to be shown before the input elements using CSS (position: relative; top: -60px).
+  - The 'Create new account' section is better, as it does not use CSS to reorder the elements.
 
-- The input fields of the 'Login' and 'Create new account' sections are different
-- In the login section, the inputs are defined first, then the labels, but the labels are moved up to be shown before the html element using CSS
-- The 'Create new account' section is better, as it does not use CSS to reorder the elements
+### If you turn off the CSS, do you see any difference? If you use a screen reader, what would the reading order be?
 
-### If you turn off the CSS, do you see any difference?
-
-- The screen reader reads the elements in the order that they appear in the HTML
-- Hence, the order is different for the two sections
+- The screen reader reads the HTML elements in the order in which they appear within the HTML code.
+- Hence, the order is different for the two sections:
+  - While in the "Login" part, you first get the input fields and only then the descriptions for the input fields, the "Create new account" section works more naturally, as it first provides the descriptions for the input fields and later the input fields themselves.
 
 ### Can you propose a solution to improve the HTML code so that the HTML code structure better reflects what the user sees?
-
-- Mark text as a label for the input field
-- Place label before input field to respect element ordering
+We suggest the following solution:
+- The descriptions are placed within `label` elements. Each `label` element is then marked as a label for the respective input field.
+- Place label before input field to respect element ordering.
 
 # Exercise 3 – Accessible navigation
 
@@ -80,76 +94,73 @@
 
 ### Can you find any headings in the source code?
 
-- There are no h-tags in the html code
+There are no heading tags in the HTML code.
 
 ### Do you think if it is good accessibility practice or not? Why?
 
-- This is not accessible as no structure or content hierarchy is achieved
+We think that this is not a good accessibility practice: The website is not very accessible as no structure or content hierarchy is achieved. It will be very difficult for people that
+use screenreaders to navigate through the website, because they cannot recognize topic grouping or structure.
 
 ### If you view the same page in your browser, can you visually identify contents that are emphasized with enlarged font size or bolded font face?
 
-- Yes, the pseudo-titles are styled with CSS to be larger and bolder
+Yes, the website has titles which are styled with CSS to be larger and bolder.
 
 ### Find the content in the source code, can you propose and implement changes so that those emphasized contents are identified using appropriate heading hierarchy?
-
-- Add `<h1>`-Tags to all `.title` elements
-- Add `<h2>`-Tags to all `.subtitle` elements
+Yes, we implemented fundamental changes to the website. We did the following:
+- We added `<h1>`-tags to all HTML-elements which had an indication in their class name that they are a `title`
+- We added `<h2>`-tags to all HTML-elements which had an indication in their class name that they are a `subtitle`
 
 ## Article and their titles
 
-### Can you make improvement to this by switching the div elements to HTML5 sematic tags?
+### Look at the index page in your browser. You will find three articles in the news & events section. In the corresponding HTML code, each article is enclosed inside the generic div element. Can you make improvement to this by switching the div elements to HTML5 sematic tags?
+Yes, we were able to improve the accessibility of the website by adding `<article>`-tags around all article divs.
 
-- Add `<article>`-Tags around all article divs
-
-### Can you make the user experience better so that the screen reader announces the artilce title already when the user is on the article, instead of requiring the user to navigate to the title before the announcement is made?
-
-- Add `aria-labelledby` to the article
-- Add ID to articles `<h2>`-tag
+### Can you make the user experience better so that the screen reader announces the article title already when the user is on the article, instead of requiring the user to navigate to the title before the announcement is made?
+Yes, we were able to improve the user experience. We added the `aria-labelledby` attribute to the articles and set the value of the attribute to the ID of the articles' `<h2>`-tags. This was done because the `<h2>`-tags had the article titles in text form.
 
 ## Menu structure
 
 ### Do you think the generic div elements are good enough to convey the menu structure?
 
-- No, the current menu structure does not use semantically meaningful tags
+No, the current menu structure does not use meaningful semantical tags.
 
 ### Are there other HTML elements that are better at indicating sub-menu hierarchy
 
-- It would be better to use nested lists with `<ol>` and `<li>` tags
+It would be better to use nested lists with `<ul>` and `<li>` tags. The menu itself would be a unordered list (`<ul>`) whose structure would be determined by the list items (`<li>`) which are the nav items.
 
 ## Drop-down menu
 
 ### Do you think a screen reader user will be updated about the change of status, i.e. whether the sub-menu is displayed or not?
 
-- Screen readers will not be able to perceive the sub menu as the 'show' attribute is added/removed on click
+We think that screen readers won't be able to perceive the sub-menu when the 'show' attribute is added/removed on click.
 
 ### If not, try to fix the menu s.t. the screenreader will read "menu", "expanded/collapsed" correctly
-
-- Add `aria-haspopup` and `aria-expanded` attributes to the dropdown html
-- Control aria using javascript when dropdown is opened/closed
+For this task, we did the following steps:
+- We added `aria-haspopup` and `aria-expanded` attributes to the dropdown HTML elements
+- To update the `aria-expanded` attributes, we programmed a JavaScript function that updates the values when the dropdown is opened/closed
 
 ## Menu keyboard interaction
 
 ### Can you implement this feature by using JavaScript to listen to keyboard events on sub-menu and closes it if it is open?
-
-- Register a `keydown` event listener to close the menu and focus on header on escape click
+Yes, we registered a `keydown` event listener to close the menu and focus on header on an ESC click.
 
 ### To improve the user experience, it would be ideal if the menu items can also be activated by pressing the SPACE key, which is the default for button types.
 
-- Register a `keydown` event listener to open the dropdown menu or click the respective link on space click
+We registered a `keydown` event listener to open the dropdown menu or click the respective link on SPACE click.
 
 ### When navigating outside an open menu with TAB, the now inactive menu should be closed as well
 
-- Register a `keydown` event listener to close the menu on tab
+We registered a `keydown` event listener to close the menu on TAB.
 
 ## Skip links
 
 ### Skip links provides shortcuts for screen reader users to jump to a section of the page quickly. Can you implement this feature?
-
-- Create multiple links to the individual sections
-- Add `id` attribute to all sections
-- Link links to section IDs
-- Make links invisible using CSS
-- Make links visible when in focus
+We did the following steps:
+- Created multiple links to the individual sections
+- Added `id` attribute to all sections
+- Linked links to section IDs
+- Made links invisible using CSS
+- Made links visible when in focus
 
 # Exercise 4 – Accessible forms
 
