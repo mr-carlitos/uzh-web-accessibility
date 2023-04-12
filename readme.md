@@ -4,7 +4,6 @@
 ### Try to find features that do not work as expected.
 
 - Clicking on the website logo or the text next to it did not lead to the home page.
-- The buttons on the top-right of the screen that look like they should change the font size don't do anything when clicked.
 - A lot of links lead to pages that state "This page is currently under construction".
 - On the login page, neither the "login" nor the "Forgot password" button are implemented.
 - On the login page, the "register" button does not work either.
@@ -15,7 +14,7 @@
 
 - The website suffers from a lot of poor contrasts, text is generally written in grey instead of black.
 - The hover indicators on all menu items are very subtle and therefore hard to perceive.
-- On the login page, the login form does not state what was done wrong, it just states "Please correct the error(s)". Colorblind people will not perceive the color indication around the form boxes.
+- On the login page, the login form does not state what was done wrong, it just states "Please correct the error(s)". Colorblind people will not perceive the color indication around the form boxes. For email adresses it is also not stated what the exact problem is (also for people that are not colorblind).
 
 ### Discuss with your colleagues about your findings and try to propose some solutions or improvements.
 
