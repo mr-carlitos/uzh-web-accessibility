@@ -1,1 +1,11 @@
+fieldset .outlined {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: .5em;
+  margin-bottom: .5rem;
+}
 
+fieldset .outlined > legend {
+  padding-inline: .5em;
+  width: auto;
+}
