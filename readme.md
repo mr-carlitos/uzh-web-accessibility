@@ -247,9 +247,8 @@ We did the following steps:
 
 By using the WAVE tool we discoverd the following things:
 
--One button had no purpose. We deleted the button.
 -Some text had very low contrast. We changed the color until there was enough contrast.
--On the login and article page there is no heading structure. But in our opinion these pages have very little content and don't need a heading structure. 
+-On the login and article page there was no heading structure. So we added a heading structure to these pages. 
 -The picture of the logo had no alternative text. We set the text for the logo to "Logo of the Institute of Technology".
 -There were some alerts that the pictures had insuficient discriptions as alternative text. But in our opinion the alternative text for the pictures we used is good.
 -There were alerts that the some of our links go to the same URL. Since this is an example webpage this is on purpose. All the pages are just examples.
